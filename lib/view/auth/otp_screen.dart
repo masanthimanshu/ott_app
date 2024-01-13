@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ott_app/services/phone_auth_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/navigation/navigation_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -14,6 +15,7 @@ class OTPScreen extends StatefulWidget {
 
 class _OTPScreenState extends State<OTPScreen> {
   String _otp = "";
+  String _verId = "";
 
   _handleSubmit() {
     Navigator.pushReplacement(
@@ -22,6 +24,15 @@ class _OTPScreenState extends State<OTPScreen> {
         builder: (_) => const NavigationScreen(),
       ),
     );
+  }
+
+  @override
+  void initState() {
+    PhoneAuthService(context: context)
+        .sendOtp(widget.phone)
+        .then((text) => _verId = text!);
+
+    super.initState();
   }
 
   @override

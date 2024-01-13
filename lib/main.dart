@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/firebase_options.dart';
+import 'package:ott_app/utils/root.dart';
 import 'package:ott_app/utils/theme.dart';
-import 'package:ott_app/view/get_started/get_started_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: appTheme,
       debugShowCheckedModeBanner: false,
-      home: const GetStartedScreen(),
+      home: const CustomRootWidget(),
     );
   }
 }

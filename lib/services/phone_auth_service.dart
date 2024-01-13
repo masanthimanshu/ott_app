@@ -1,22 +1,17 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:ott_app/model/phone_auth_model.dart';
+import 'package:flutter/material.dart';
 
-final _data = PhoneAuthModel();
+class PhoneAuthService {
+  PhoneAuthService({required this.context});
 
-final phoneAuthServiceProvider =
-    StateNotifierProvider<PhoneAuthService, PhoneAuthModel>(
-  (ref) => PhoneAuthService(),
-);
-
-class PhoneAuthService extends StateNotifier<PhoneAuthModel> {
-  PhoneAuthService() : super(_data);
-
-  String _verId = "";
+  final BuildContext context;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  void sendOtp({required String phone}) async {
+  Future<String?> sendOtp(String phone) async {
+    final Completer<String> completer = Completer<String>();
+
     try {
       await _auth.verifyPhoneNumber(
         phoneNumber: phone,
@@ -24,19 +19,43 @@ class PhoneAuthService extends StateNotifier<PhoneAuthModel> {
           await _auth.signInWithCredential(credential);
         },
         codeSent: (String verificationId, int? resendToken) async {
-          Fluttertoast.showToast(msg: "OTP Sent");
-          _verId = verificationId;
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("OTP Sent")),
+          );
+          completer.complete(verificationId);
         },
         verificationFailed: (e) => throw Exception(e.message),
         codeAutoRetrievalTimeout: (String verificationId) {
-          Fluttertoast.showToast(msg: "OTP Timed Out");
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("OTP Timed Out")),
+          );
         },
       );
+
+      return completer.future;
     } on FirebaseAuthException {
-      Fluttertoast.showToast(msg: "Error Sending OTP");
+      debugPrint("Error Sending OTP");
       return null;
     }
   }
 
-  void verifyOtp({required String otp}) {}
+  Future<UserCredential?> verifyOtp({
+    required String otp,
+    required String verId,
+  }) async {
+    try {
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: verId,
+        smsCode: otp,
+      );
+
+      final UserCredential userCredential =
+          await _auth.signInWithCredential(credential);
+
+      return userCredential;
+    } on FirebaseAuthException {
+      debugPrint("Error Verifying OTP");
+      return null;
+    }
+  }
 }
