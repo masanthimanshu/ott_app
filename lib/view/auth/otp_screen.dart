@@ -18,12 +18,22 @@ class _OTPScreenState extends State<OTPScreen> {
   String _verId = "";
 
   _handleSubmit() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const NavigationScreen(),
-      ),
-    );
+    PhoneAuthService(context: context)
+        .verifyOtp(otp: _otp, verId: _verId)
+        .then((value) {
+      if (value != null) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const NavigationScreen(),
+          ),
+        );
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Error Logging In")),
+        );
+      }
+    });
   }
 
   @override

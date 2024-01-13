@@ -18,7 +18,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
 
   void _handleSubmit() {
     if (_numberPattern.hasMatch(_phone)) {
-      final text = "$_countryCode - $_phone";
+      final text = "$_countryCode $_phone";
 
       Navigator.pushReplacement(
         context,
