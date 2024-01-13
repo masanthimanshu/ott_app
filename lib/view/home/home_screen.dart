@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ott_app/styles/text_styles.dart';
+import 'package:ott_app/view/player/player_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -23,11 +24,21 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: 5,
             controller: _pageController,
             itemBuilder: (e, index) {
-              return Container(
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.25),
-                  borderRadius: BorderRadius.circular(10),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PlayerScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               );
             },
@@ -57,12 +68,22 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (e, index) {
-              return Container(
-                width: 300,
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.25),
-                  borderRadius: BorderRadius.circular(10),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PlayerScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 300,
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               );
             },
@@ -80,35 +101,22 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (e, index) {
-              return Container(
-                width: 300,
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.25),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-              );
-            },
-          ),
-        ),
-        const SizedBox(height: 40),
-        Text(
-          "Original Content",
-          style: CustomTextStyle.mediumText.style,
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 200,
-          child: ListView.builder(
-            itemCount: 5,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (e, index) {
-              return Container(
-                width: 300,
-                margin: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.25),
-                  borderRadius: BorderRadius.circular(10),
+              return GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const PlayerScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 300,
+                  margin: const EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.25),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               );
             },

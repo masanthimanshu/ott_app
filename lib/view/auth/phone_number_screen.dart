@@ -64,7 +64,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Welcome User,",
+                  "Welcome,",
                   style: CustomTextStyle.heading.style,
                 ),
                 const SizedBox(height: 5),

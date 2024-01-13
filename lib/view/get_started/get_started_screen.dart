@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ott_app/styles/btn_style.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/auth/phone_number_screen.dart';
-import 'package:ott_app/view/navigation/navigation_screen.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
@@ -55,23 +53,7 @@ class GetStartedScreen extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text("Login & Subscribe"),
-                  ),
-                ),
-                const SizedBox(height: 15),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const NavigationScreen(),
-                        ),
-                      );
-                    },
-                    style: CustomButtonStyle.lightBtn.style,
-                    child: const Text("Try as Guest!"),
+                    child: const Text("Get Started"),
                   ),
                 ),
                 const SizedBox(height: 25),
