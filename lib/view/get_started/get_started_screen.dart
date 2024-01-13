@@ -32,11 +32,6 @@ class GetStartedScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Icon(
-                  size: 100,
-                  Icons.stream,
-                  color: Colors.white,
-                ),
                 const SizedBox(height: 50),
                 Text(
                   "OTT Platform",

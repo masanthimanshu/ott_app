@@ -18,6 +18,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
     const HomeScreen(),
     const SearchScreen(),
     const FavouriteScreen(),
+    const FavouriteScreen(),
+    const FavouriteScreen(),
   ];
 
   @override
@@ -48,6 +50,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
             _selectedScreen == 0 ? Icons.home : Icons.home_outlined,
             color: Colors.white,
           ),
+          const Icon(Icons.search, color: Colors.white),
+          const Icon(Icons.search, color: Colors.white),
           const Icon(Icons.search, color: Colors.white),
           Icon(
             _selectedScreen == 2 ? Icons.favorite : Icons.favorite_outline,
