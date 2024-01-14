@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ott_app/components/home/movie_card.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/player/player_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -68,24 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (e, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const PlayerScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 300,
-                  margin: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.25),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              );
+              return const MovieCard();
             },
           ),
         ),
@@ -101,24 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
             itemCount: 5,
             scrollDirection: Axis.horizontal,
             itemBuilder: (e, index) {
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const PlayerScreen(),
-                    ),
-                  );
-                },
-                child: Container(
-                  width: 300,
-                  margin: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.25),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-              );
+              return const MovieCard();
             },
           ),
         ),
