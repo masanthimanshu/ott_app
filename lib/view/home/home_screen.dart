@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/components/home/movie_card.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/player/player_screen.dart';
@@ -12,7 +15,28 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _hiveBox = Hive.box("myBox");
+  final _db = FirebaseFirestore.instance;
+  final _user = FirebaseAuth.instance.currentUser!;
   final PageController _pageController = PageController();
+
+  _addData() {
+    final data = {
+      "id": _user.uid,
+      "phone": _user.phoneNumber,
+      "name": _hiveBox.get("name"),
+      "email": _hiveBox.get("email"),
+      "timestamp": FieldValue.serverTimestamp(),
+    };
+
+    _db.collection("users").doc(_user.uid).set(data, SetOptions(merge: true));
+  }
+
+  @override
+  void initState() {
+    _addData();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

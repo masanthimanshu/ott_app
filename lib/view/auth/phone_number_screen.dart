@@ -1,5 +1,6 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/auth/otp_screen.dart';
 
@@ -12,6 +13,7 @@ class PhoneNumberScreen extends StatefulWidget {
 
 class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
   final RegExp _numberPattern = RegExp(r'^\d{10}$');
+  final _hiveBox = Hive.box("myBox");
 
   String _countryCode = "+91";
   String _phone = "";
@@ -67,9 +69,9 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   "Welcome,",
                   style: CustomTextStyle.heading.style,
                 ),
-                const SizedBox(height: 5),
+                const SizedBox(height: 10),
                 Text(
-                  "Enter your phone number to Sign In",
+                  "Hey ${_hiveBox.get("name").toLowerCase()}, enter your phone number to sign in -",
                   style: CustomTextStyle.subHeading.style,
                 ),
                 const SizedBox(height: 50),

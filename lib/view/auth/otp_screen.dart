@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ott_app/services/phone_auth_service.dart';
+import 'package:ott_app/services/auth_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/navigation/navigation_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

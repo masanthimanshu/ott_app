@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ott_app/styles/text_styles.dart';
-import 'package:ott_app/view/auth/phone_number_screen.dart';
+import 'package:ott_app/view/auth/name_email_screen.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({super.key});
@@ -49,7 +49,7 @@ class GetStartedScreen extends StatelessWidget {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => const PhoneNumberScreen(),
+                          builder: (_) => const NameAndEmailScreen(),
                         ),
                       );
                     },
