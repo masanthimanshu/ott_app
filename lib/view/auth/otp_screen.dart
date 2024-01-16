@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/services/auth_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/navigation/navigation_screen.dart';
@@ -14,14 +16,34 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> {
+  final _hiveBox = Hive.box("myBox");
+  final _db = FirebaseFirestore.instance;
+
   String _otp = "";
   String _verId = "";
+
+  _addData({required String uid, required String phone}) {
+    final data = {
+      "id": uid,
+      "phone": phone,
+      "name": _hiveBox.get("name"),
+      "email": _hiveBox.get("email"),
+      "timestamp": FieldValue.serverTimestamp(),
+    };
+
+    _db.collection("users").doc(uid).set(data, SetOptions(merge: true));
+  }
 
   _handleSubmit() {
     PhoneAuthService(context: context)
         .verifyOtp(otp: _otp, verId: _verId)
         .then((value) {
       if (value != null) {
+        _addData(
+          uid: value.user!.uid,
+          phone: value.user!.phoneNumber!,
+        );
+
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
