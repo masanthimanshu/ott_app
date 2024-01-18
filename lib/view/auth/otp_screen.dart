@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/services/auth_service.dart';
+import 'package:ott_app/styles/pin_style.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/navigation/navigation_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -34,28 +35,20 @@ class _OTPScreenState extends State<OTPScreen> {
     _db.collection("users").doc(uid).set(data, SetOptions(merge: true));
   }
 
-  _handleSubmit() {
-    PhoneAuthService(context: context)
-        .verifyOtp(otp: _otp, verId: _verId)
-        .then((value) {
-      if (value != null) {
-        _addData(
-          uid: value.user!.uid,
-          phone: value.user!.phoneNumber!,
-        );
+  _handleSubmit() async {
+    final phoneAuthService = PhoneAuthService(context: context);
+    final res = await phoneAuthService.verifyOtp(otp: _otp, verId: _verId);
 
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (_) => const NavigationScreen(),
-          ),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Error Logging In")),
-        );
-      }
-    });
+    _addData(uid: res.user!.uid, phone: res.user!.phoneNumber!);
+
+    if (!mounted) return;
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const NavigationScreen(),
+      ),
+    );
   }
 
   @override
@@ -106,17 +99,20 @@ class _OTPScreenState extends State<OTPScreen> {
                 PinCodeTextField(
                   length: 6,
                   autoFocus: true,
+                  pinTheme: pinStyle,
                   appContext: context,
                   onChanged: (text) => _otp = text,
                   keyboardType: TextInputType.number,
                   textStyle: CustomTextStyle.bodyText.style,
-                  pinTheme: PinTheme(
-                    selectedColor: Colors.grey,
-                    inactiveColor: Colors.grey,
-                    shape: PinCodeFieldShape.box,
-                    activeColor: Colors.deepPurple,
-                    borderRadius: BorderRadius.circular(5),
-                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text("Resend OTP"),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 50),
                 SizedBox(

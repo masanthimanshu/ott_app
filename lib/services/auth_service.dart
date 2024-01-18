@@ -15,16 +15,30 @@ class PhoneAuthService {
     try {
       await _auth.verifyPhoneNumber(
         phoneNumber: phone,
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          await _auth.signInWithCredential(credential);
-        },
+        verificationCompleted: (e) {},
         codeSent: (String verificationId, int? resendToken) async {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("OTP Sent")),
           );
           completer.complete(verificationId);
         },
-        verificationFailed: (e) => throw Exception(e.message),
+        verificationFailed: (FirebaseAuthException e) {
+          showDialog<String>(
+            context: context,
+            builder: (BuildContext context) => AlertDialog(
+              title: const Text('Error Sending OTP'),
+              content: Text('${e.message}'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'OK'),
+                  child: const Text('OK'),
+                ),
+              ],
+            ),
+          );
+
+          throw Exception(e.message);
+        },
         codeAutoRetrievalTimeout: (String verificationId) {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(content: Text("OTP Timed Out")),
@@ -33,29 +47,21 @@ class PhoneAuthService {
       );
 
       return completer.future;
-    } on FirebaseAuthException {
-      debugPrint("Error Sending OTP");
+    } on FirebaseAuthException catch (e) {
+      debugPrint("Error Sending OTP: $e");
       return null;
     }
   }
 
-  Future<UserCredential?> verifyOtp({
+  Future<UserCredential> verifyOtp({
     required String otp,
     required String verId,
   }) async {
-    try {
-      PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: verId,
-        smsCode: otp,
-      );
+    final credential = PhoneAuthProvider.credential(
+      verificationId: verId,
+      smsCode: otp,
+    );
 
-      final UserCredential userCredential =
-          await _auth.signInWithCredential(credential);
-
-      return userCredential;
-    } on FirebaseAuthException {
-      debugPrint("Error Verifying OTP");
-      return null;
-    }
+    return _auth.signInWithCredential(credential);
   }
 }

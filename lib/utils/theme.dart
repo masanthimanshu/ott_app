@@ -10,6 +10,16 @@ final ThemeData appTheme = ThemeData(
     foregroundColor: Colors.white,
     actionsIconTheme: IconThemeData(color: Colors.white),
   ),
+  textButtonTheme: const TextButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: MaterialStatePropertyAll(Colors.white),
+    ),
+  ),
+  iconButtonTheme: const IconButtonThemeData(
+    style: ButtonStyle(
+      foregroundColor: MaterialStatePropertyAll(Colors.white),
+    ),
+  ),
   elevatedButtonTheme: const ElevatedButtonThemeData(
     style: ButtonStyle(
       padding: MaterialStatePropertyAll(EdgeInsets.all(18)),

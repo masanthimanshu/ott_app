@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ott_app/components/home/movie_card.dart';
-import 'package:ott_app/styles/text_styles.dart';
+import 'package:ott_app/components/home/home_movie_list.dart';
 import 'package:ott_app/view/player/player_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -57,38 +56,10 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
+        const HomeMovieList(title: "Web Series"),
+        const HomeMovieList(title: "Latest Movies"),
+        const HomeMovieList(title: "Trending Shows"),
         const SizedBox(height: 40),
-        Text(
-          "Latest Movies",
-          style: CustomTextStyle.mediumText.style,
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 200,
-          child: ListView.builder(
-            itemCount: 5,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (e, index) {
-              return const MovieCard();
-            },
-          ),
-        ),
-        const SizedBox(height: 40),
-        Text(
-          "Trending Shows",
-          style: CustomTextStyle.mediumText.style,
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 200,
-          child: ListView.builder(
-            itemCount: 5,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (e, index) {
-              return const MovieCard();
-            },
-          ),
-        ),
       ],
     );
   }

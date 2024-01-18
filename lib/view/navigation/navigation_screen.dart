@@ -1,6 +1,5 @@
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:ott_app/view/category/category_screen.dart';
 import 'package:ott_app/view/explore/explore_screen.dart';
 import 'package:ott_app/view/favourite/favourite_screen.dart';
 import 'package:ott_app/view/home/home_screen.dart';
@@ -18,7 +17,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const CategoryScreen(),
     const ExploreScreen(),
     const FavouriteScreen(),
     const ProfileScreen(),
@@ -28,50 +26,33 @@ class _NavigationScreenState extends State<NavigationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      extendBody: true,
       body: _pages[_selectedScreen],
-      bottomNavigationBar: CurvedNavigationBar(
-        color: Colors.deepPurple,
-        backgroundColor: Colors.transparent,
+      bottomNavigationBar: DotNavigationBar(
+        paddingR: EdgeInsets.zero,
+        backgroundColor: Colors.black,
+        unselectedItemColor: Colors.grey,
+        dotIndicatorColor: Colors.transparent,
+        itemPadding: const EdgeInsets.all(15),
+        marginR: const EdgeInsets.symmetric(horizontal: 25),
+        currentIndex: _selectedScreen,
         onTap: (e) {
           setState(() {
             _selectedScreen = e;
           });
         },
         items: [
-          Tooltip(
-            message: "Home",
-            child: Icon(
-              _selectedScreen == 0 ? Icons.home : Icons.home_outlined,
-              color: Colors.white,
-            ),
+          DotNavigationBarItem(
+            icon: const Icon(Icons.home),
           ),
-          Tooltip(
-            message: "Category",
-            child: Icon(
-              _selectedScreen == 1 ? Icons.category : Icons.category_outlined,
-              color: Colors.white,
-            ),
+          DotNavigationBarItem(
+            icon: const Icon(Icons.explore),
           ),
-          Tooltip(
-            message: "Search",
-            child: Icon(
-              _selectedScreen == 2 ? Icons.explore : Icons.explore_outlined,
-              color: Colors.white,
-            ),
+          DotNavigationBarItem(
+            icon: const Icon(Icons.favorite),
           ),
-          Tooltip(
-            message: "Favorites",
-            child: Icon(
-              _selectedScreen == 3 ? Icons.favorite : Icons.favorite_outline,
-              color: Colors.white,
-            ),
-          ),
-          Tooltip(
-            message: "Profile",
-            child: Icon(
-              _selectedScreen == 4 ? Icons.person : Icons.person_outline,
-              color: Colors.white,
-            ),
+          DotNavigationBarItem(
+            icon: const Icon(Icons.person),
           ),
         ],
       ),
