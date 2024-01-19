@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class GetDataService {
+mixin GetDataService {
   final _db = FirebaseFirestore.instance;
 
   Future<List<Map<String, dynamic>>?> getCollectionData({

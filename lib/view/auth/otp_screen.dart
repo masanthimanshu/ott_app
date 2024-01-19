@@ -22,7 +22,7 @@ class OTPScreen extends StatefulWidget {
   State<OTPScreen> createState() => _OTPScreenState();
 }
 
-class _OTPScreenState extends State<OTPScreen> {
+class _OTPScreenState extends State<OTPScreen> with AddDataService {
   final _hiveBox = Hive.box("myBox");
 
   String _otp = "";
@@ -36,7 +36,7 @@ class _OTPScreenState extends State<OTPScreen> {
       "time": FieldValue.serverTimestamp(),
     };
 
-    AddDataService().createDocument(
+    createDocument(
       data: data,
       document: uid,
       collection: "users",

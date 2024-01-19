@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-class AddDataService {
+mixin AddDataService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<void> addDocument({
