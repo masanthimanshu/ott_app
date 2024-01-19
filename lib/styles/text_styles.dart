@@ -16,10 +16,6 @@ extension CustomTextStyleExtension on CustomTextStyle {
           color: Colors.white,
           fontWeight: FontWeight.bold,
         );
-      case CustomTextStyle.bodyText:
-        return const TextStyle(
-          color: Colors.white,
-        );
       case CustomTextStyle.mediumText:
         return const TextStyle(
           fontSize: 23,
@@ -28,6 +24,10 @@ extension CustomTextStyleExtension on CustomTextStyle {
       case CustomTextStyle.subHeading:
         return const TextStyle(
           fontSize: 18,
+          color: Colors.white,
+        );
+      case CustomTextStyle.bodyText:
+        return const TextStyle(
           color: Colors.white,
         );
     }

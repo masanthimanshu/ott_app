@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:ott_app/services/auth_service.dart';
+import 'package:ott_app/firebase_services/firebase_auth/phone_auth_service.dart';
 import 'package:ott_app/styles/pin_style.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/navigation/navigation_screen.dart';
