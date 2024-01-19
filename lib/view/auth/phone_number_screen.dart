@@ -2,7 +2,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/styles/text_styles.dart';
-import 'package:ott_app/view/auth/otp_screen.dart';
+import 'package:ott_app/view/auth/loading_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -22,10 +22,10 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
     if (_numberPattern.hasMatch(_phone)) {
       final text = "$_countryCode $_phone";
 
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (_) => OTPScreen(phone: text),
+          builder: (_) => LoadingScreen(phone: text),
         ),
       );
     } else if (_phone.trim() == "") {

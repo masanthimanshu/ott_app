@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ott_app/view/get_started/get_started_screen.dart';
+import 'package:ott_app/firebase_services/firebase_auth/logout_service.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,14 +11,9 @@ class ProfileScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            FirebaseAuth.instance.signOut().then((e) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (_) => const GetStartedScreen(),
-                ),
-              );
-            });
+            LogoutService(context: context).logout(
+              route: "/get-started",
+            );
           },
           child: const Text("Logout"),
         ),

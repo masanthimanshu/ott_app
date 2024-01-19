@@ -5,6 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/firebase_options.dart';
 import 'package:ott_app/utils/root.dart';
 import 'package:ott_app/utils/theme.dart';
+import 'package:ott_app/view/get_started/get_started_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +30,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: appTheme,
+      routes: {
+        "/get-started": (e) => const GetStartedScreen(),
+      },
       debugShowCheckedModeBanner: false,
       home: const CustomRootWidget(),
     );
