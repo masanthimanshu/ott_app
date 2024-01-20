@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ott_app/firebase_services/auth/phone_auth_service.dart';
+import 'package:ott_app/firebase/auth/phone_auth_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/auth/otp_screen.dart';
 

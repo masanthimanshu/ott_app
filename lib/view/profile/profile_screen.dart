@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ott_app/firebase_services/auth/logout_service.dart';
+import 'package:ott_app/firebase/auth/logout_service.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

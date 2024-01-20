@@ -23,4 +23,19 @@ mixin GetDataService {
     final res = await _db.collection(collection).doc(document).get();
     return res.data();
   }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getCollectionStream({
+    required String collection,
+  }) {
+    final res = _db.collection(collection).snapshots();
+    return res;
+  }
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>> getDocumentStream({
+    required String document,
+    required String collection,
+  }) {
+    final res = _db.collection(collection).doc(document).snapshots();
+    return res;
+  }
 }
