@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/firebase/auth/phone_auth_service.dart';
@@ -32,7 +31,6 @@ class _OTPScreenState extends State<OTPScreen> with AddDataService {
       "phone": phone,
       "name": _hiveBox.get("name"),
       "email": _hiveBox.get("email"),
-      "time": FieldValue.serverTimestamp(),
     };
 
     createDocument(

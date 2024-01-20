@@ -9,7 +9,10 @@ mixin AddDataService {
     required Map<String, dynamic> data,
   }) async {
     try {
-      await _db.collection(collection).add(data);
+      await _db.collection(collection).add({
+        ...data,
+        "timestamp": FieldValue.serverTimestamp(),
+      });
     } catch (e) {
       debugPrint("Error adding document - $e");
     }
@@ -21,10 +24,10 @@ mixin AddDataService {
     required Map<String, dynamic> data,
   }) async {
     try {
-      await _db
-          .collection(collection)
-          .doc(document)
-          .set(data, SetOptions(merge: true));
+      await _db.collection(collection).doc(document).set({
+        ...data,
+        "timestamp": FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
     } catch (e) {
       debugPrint("Error creating document - $e");
     }
