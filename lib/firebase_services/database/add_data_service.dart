@@ -11,7 +11,7 @@ mixin AddDataService {
     try {
       await _db.collection(collection).add(data);
     } catch (e) {
-      _handleError(e, "Error adding document");
+      debugPrint("Error adding document - $e");
     }
   }
 
@@ -26,15 +26,7 @@ mixin AddDataService {
           .doc(document)
           .set(data, SetOptions(merge: true));
     } catch (e) {
-      _handleError(e, "Error creating document");
-    }
-  }
-
-  void _handleError(Object error, String message) {
-    if (error is FirebaseException) {
-      debugPrint("$message - ${error.message}");
-    } else {
-      debugPrint("$message - $error");
+      debugPrint("Error creating document - $e");
     }
   }
 }
