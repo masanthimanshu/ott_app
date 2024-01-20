@@ -6,17 +6,14 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            LogoutService(context: context).logout(
-              route: "/get-started",
-            );
-          },
-          child: const Text("Logout"),
-        ),
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          LogoutService(context: context).logout(
+            route: "/get-started",
+          );
+        },
+        child: const Text("Logout"),
       ),
     );
   }

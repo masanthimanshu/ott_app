@@ -5,7 +5,6 @@ import 'package:ott_app/firebase_services/cloud_firestore/add_data_service.dart'
 import 'package:ott_app/firebase_services/firebase_auth/phone_auth_service.dart';
 import 'package:ott_app/styles/pin_style.dart';
 import 'package:ott_app/styles/text_styles.dart';
-import 'package:ott_app/view/navigation/navigation_screen.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OTPScreen extends StatefulWidget {
@@ -53,12 +52,7 @@ class _OTPScreenState extends State<OTPScreen> with AddDataService {
 
     if (!mounted) return;
 
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const NavigationScreen(),
-      ),
-    );
+    Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
   }
 
   @override

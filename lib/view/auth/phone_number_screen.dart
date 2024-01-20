@@ -71,7 +71,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "Hey ${_hiveBox.get("name").toLowerCase()}, enter your phone number to sign in -",
+                  "Hello ${_hiveBox.get("name").toLowerCase()}, enter your phone number to sign in -",
                   style: CustomTextStyle.subHeading.style,
                 ),
                 const SizedBox(height: 50),
