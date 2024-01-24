@@ -12,7 +12,10 @@ class PlayerScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          const VidePlayer(),
+          const VideoPlayer(
+            url:
+                "https://assets.mixkit.co/videos/preview/mixkit-curvy-road-on-a-tree-covered-hill-41537-large.mp4",
+          ),
           const SizedBox(height: 50),
           Text(
             "Movie Name",
