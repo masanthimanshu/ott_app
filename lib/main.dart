@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       theme: appTheme,
+      title: "OTT App",
       routes: appRoutes,
       debugShowCheckedModeBanner: false,
     );

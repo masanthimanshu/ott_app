@@ -14,7 +14,7 @@ class PlayerScreen extends StatelessWidget {
         children: [
           const VideoPlayer(
             url:
-                "https://assets.mixkit.co/videos/preview/mixkit-curvy-road-on-a-tree-covered-hill-41537-large.mp4",
+                "https://vz-78123479-8ef.b-cdn.net/64a096dc-6454-480a-a92e-bb6396cfbe76/playlist.m3u8",
           ),
           const SizedBox(height: 50),
           Text(
