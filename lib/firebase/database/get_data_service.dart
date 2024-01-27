@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 mixin GetDataService {
   final _db = FirebaseFirestore.instance;
 
-  Future<List<Map<String, dynamic>>?> getCollectionData({
-    required String collection,
-  }) async {
+  Future<List<Map<String, dynamic>>?> getCollectionData(
+    String collection,
+  ) async {
     final res = await _db.collection(collection).get();
 
     if (res.docs.isNotEmpty) {

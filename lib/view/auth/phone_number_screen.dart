@@ -1,8 +1,9 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:ott_app/firebase/auth/phone_auth_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
-import 'package:ott_app/view/auth/loading_screen.dart';
+import 'package:ott_app/view/auth/otp_screen.dart';
 
 class PhoneNumberScreen extends StatefulWidget {
   const PhoneNumberScreen({super.key});
@@ -22,12 +23,14 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
     if (_numberPattern.hasMatch(_phone)) {
       final text = "$_countryCode $_phone";
 
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => LoadingScreen(phone: text),
-        ),
-      );
+      PhoneAuthService(context: context).sendOtp(text).then((value) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => OTPScreen(verId: value!, phone: text),
+          ),
+        );
+      });
     } else if (_phone.trim() == "") {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text("Enter Phone Number")),

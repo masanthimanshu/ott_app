@@ -29,6 +29,7 @@ class _OTPScreenState extends State<OTPScreen> with AddDataService {
     final data = {
       "id": uid,
       "phone": phone,
+      "paymentType": "Paid",
       "name": _hiveBox.get("name"),
       "email": _hiveBox.get("email"),
     };

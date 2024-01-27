@@ -16,11 +16,7 @@ void main() async {
   await Hive.initFlutter();
   await Hive.openBox("myBox");
 
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
