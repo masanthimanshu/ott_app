@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:ott_app/view/get_started/get_started_screen.dart';
 import 'package:ott_app/view/navigation/navigation_screen.dart';
 
-class CustomRootWidget extends StatelessWidget {
-  const CustomRootWidget({super.key});
+class CustomRoot extends StatelessWidget {
+  const CustomRoot({super.key});
 
   @override
   Widget build(BuildContext context) {

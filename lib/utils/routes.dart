@@ -6,7 +6,7 @@ import '/view/get_started/get_started_screen.dart';
 import '/view/navigation/navigation_screen.dart';
 
 final Map<String, WidgetBuilder> appRoutes = {
-  "/": (e) => const CustomRootWidget(),
+  "/": (e) => const CustomRoot(),
   "/home": (e) => const NavigationScreen(),
   "/auth": (e) => const NameAndEmailScreen(),
   "/get-started": (e) => const GetStartedScreen(),

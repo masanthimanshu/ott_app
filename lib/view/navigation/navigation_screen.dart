@@ -25,7 +25,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       extendBody: true,
       body: _pages[_selectedScreen],
       bottomNavigationBar: DotNavigationBar(

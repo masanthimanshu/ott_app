@@ -2,7 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:ott_app/firebase/database/get_data_service.dart';
 import 'package:ott_app/model/content_model.dart';
 
-final contentProvider = FutureProvider((_) => GetContentController().getData());
+final contentProvider = FutureProvider(
+  (res) => GetContentController().getData(),
+);
 
 class GetContentController with GetDataService {
   Future<List<ContentModel>?> getData() async {
