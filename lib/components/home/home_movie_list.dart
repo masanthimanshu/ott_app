@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:ott_app/model/content_model.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:ott_app/view/player/player_screen.dart';
 
 class HomeMovieList extends StatelessWidget {
-  const HomeMovieList({super.key, required this.title});
+  const HomeMovieList({
+    super.key,
+    required this.title,
+    required this.data,
+  });
 
   final String title;
+  final List<ContentModel> data;
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +33,9 @@ class HomeMovieList extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         SizedBox(
-          height: 200,
+          height: 175,
           child: ListView.builder(
-            itemCount: 5,
+            itemCount: data.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (e, index) {
               return GestureDetector(
@@ -37,16 +43,18 @@ class HomeMovieList extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const PlayerScreen(),
+                      builder: (_) => PlayerScreen(data: data[index]),
                     ),
                   );
                 },
-                child: Container(
-                  width: 300,
-                  margin: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.25),
-                    borderRadius: BorderRadius.circular(10),
+                child: Padding(
+                  padding: const EdgeInsets.only(right: 15),
+                  child: AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Image.network(
+                      data[index].thumbnail,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
               );

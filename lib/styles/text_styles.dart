@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum CustomTextStyle {
-  heading,
-  bodyText,
-  mediumText,
-  subHeading,
-}
+enum CustomTextStyle { heading, bodyText, mediumText, subHeading }
 
 extension CustomTextStyleExtension on CustomTextStyle {
   TextStyle get style {

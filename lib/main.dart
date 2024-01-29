@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:ott_app/firebase/remote_config/config.dart';
 import 'package:ott_app/firebase_options.dart';
 import 'package:ott_app/utils/routes.dart';
 import 'package:ott_app/utils/theme.dart';
@@ -12,6 +13,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  initializeRemoteConfig();
 
   await Hive.initFlutter();
   await Hive.openBox("myBox");

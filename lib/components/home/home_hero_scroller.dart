@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ott_app/model/content_model.dart';
 import 'package:ott_app/view/player/player_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeHeroScroller extends StatefulWidget {
-  const HomeHeroScroller({super.key});
+  const HomeHeroScroller({super.key, required this.data});
+
+  final List<ContentModel> data;
 
   @override
   State<HomeHeroScroller> createState() => _HomeHeroScrollerState();
@@ -19,7 +22,7 @@ class _HomeHeroScrollerState extends State<HomeHeroScroller> {
         SizedBox(
           height: 250,
           child: PageView.builder(
-            itemCount: 5,
+            itemCount: widget.data.length,
             controller: _pageController,
             itemBuilder: (e, index) {
               return GestureDetector(
@@ -27,7 +30,7 @@ class _HomeHeroScrollerState extends State<HomeHeroScroller> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => const PlayerScreen(),
+                      builder: (_) => PlayerScreen(data: widget.data[index]),
                     ),
                   );
                 },
@@ -45,7 +48,7 @@ class _HomeHeroScrollerState extends State<HomeHeroScroller> {
         const SizedBox(height: 10),
         Center(
           child: SmoothPageIndicator(
-            count: 5,
+            count: widget.data.length,
             controller: _pageController,
             effect: const ExpandingDotsEffect(
               spacing: 4,

@@ -1,9 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:ott_app/components/player/video_player.dart';
+import 'package:ott_app/firebase/remote_config/config.dart';
+import 'package:ott_app/model/content_model.dart';
 import 'package:ott_app/styles/text_styles.dart';
 
-class PlayerScreen extends StatelessWidget {
-  const PlayerScreen({super.key});
+class PlayerScreen extends StatefulWidget {
+  const PlayerScreen({super.key, required this.data});
+
+  final ContentModel data;
+
+  @override
+  State<PlayerScreen> createState() => _PlayerScreenState();
+}
+
+class _PlayerScreenState extends State<PlayerScreen> with RemoteConfig {
+  String _videoUrl = "";
+
+  void _constructVideoUrl() {
+    final String hostname = getStringData("hostname");
+    final String fileType = getStringData("fileType");
+
+    _videoUrl = "https://$hostname/${widget.data.videoId}/playlist$fileType";
+  }
+
+  @override
+  void initState() {
+    _constructVideoUrl();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,22 +36,15 @@ class PlayerScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          const VideoPlayer(
-            url:
-                "https://vz-78123479-8ef.b-cdn.net/64a096dc-6454-480a-a92e-bb6396cfbe76/playlist.m3u8",
-          ),
+          VideoPlayer(url: _videoUrl),
           const SizedBox(height: 50),
           Text(
-            "Movie Name",
+            widget.data.title,
             style: CustomTextStyle.heading.style,
           ),
           const SizedBox(height: 25),
           Text(
-            "Movie Description Goes Here...",
-            style: CustomTextStyle.bodyText.style,
-          ),
-          Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            widget.data.desc,
             style: CustomTextStyle.bodyText.style,
           ),
         ],
