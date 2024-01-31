@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:ott_app/components/home/home_hero_scroller.dart';
 import 'package:ott_app/components/home/home_movie_list.dart';
 import 'package:ott_app/controller/get_content_controller.dart';
-import 'package:ott_app/model/content_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<ContentModel>?>(
+    return FutureBuilder(
       future: GetContentController().getData(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {

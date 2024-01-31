@@ -6,8 +6,8 @@ import 'package:ott_app/view/player/player_screen.dart';
 class HomeMovieList extends StatelessWidget {
   const HomeMovieList({
     super.key,
-    required this.title,
     required this.data,
+    required this.title,
   });
 
   final String title;
@@ -51,9 +51,14 @@ class HomeMovieList extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 15),
                   child: AspectRatio(
                     aspectRatio: 16 / 9,
-                    child: Image.network(
-                      data[index].thumbnail,
-                      fit: BoxFit.cover,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10), // Image border
+                      child: SizedBox.fromSize(
+                        child: Image.network(
+                          data[index].thumbnail,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
                   ),
                 ),

@@ -5,33 +5,39 @@ List<ContentModel> contentModel(data) {
 }
 
 class ContentModel {
-  final String tag;
+  final String type;
   final String desc;
+  final bool isPaid;
   final String title;
   final String videoId;
-  final String thumbnail;
   final String embedCode;
-  final String paymentType;
+  final String thumbnail;
+  final List<String> tag;
+  final List<String> genre;
 
   const ContentModel({
     required this.tag,
     required this.desc,
+    required this.type,
+    required this.genre,
     required this.title,
+    required this.isPaid,
     required this.videoId,
     required this.thumbnail,
     required this.embedCode,
-    required this.paymentType,
   });
 
   factory ContentModel.fromJson(Map<String, dynamic> json) {
     return ContentModel(
-      tag: json["tag"],
       desc: json["desc"],
       title: json["title"],
+      isPaid: json["isPaid"],
       videoId: json["videoId"],
+      type: json["contentType"],
       thumbnail: json["thumbnail"],
       embedCode: json["embedCode"],
-      paymentType: json["paymentType"],
+      tag: List<String>.from(json["tag"].map((x) => x)),
+      genre: List<String>.from(json["genre"].map((x) => x)),
     );
   }
 }
