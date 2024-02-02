@@ -1,33 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/styles/text_styles.dart';
-import 'package:ott_app/view/auth/phone_number_screen.dart';
 
-class NameAndEmailScreen extends StatefulWidget {
-  const NameAndEmailScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<NameAndEmailScreen> createState() => _NameAndEmailScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _hiveBox = Hive.box("myBox");
 
   String _name = "";
   String _email = "";
 
-  _handleSubmit() {
-    _hiveBox.put("name", _name);
-    _hiveBox.put("email", _email);
-
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (_) => const PhoneNumberScreen(),
-      ),
-    );
-  }
+  _handleSubmit() {}
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +34,7 @@ class _NameAndEmailScreenState extends State<NameAndEmailScreen> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.5),
-                    Colors.black,
-                  ],
+                  colors: [Colors.black.withOpacity(0.5), Colors.black],
                 ),
               ),
               child: Column(

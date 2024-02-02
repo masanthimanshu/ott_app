@@ -1,20 +1,18 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/firebase/auth/phone_auth_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
-import 'package:ott_app/view/auth/otp_screen.dart';
+import 'package:ott_app/view/auth/login/otp_screen.dart';
 
-class PhoneNumberScreen extends StatefulWidget {
-  const PhoneNumberScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<PhoneNumberScreen> createState() => _PhoneNumberScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
+class _LoginScreenState extends State<LoginScreen> with PhoneAuthService {
   final RegExp _numberPattern = RegExp(r'^\d{10}$');
-  final _hiveBox = Hive.box("myBox");
 
   String _countryCode = "+91";
   String _phone = "";
@@ -23,7 +21,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
     if (_numberPattern.hasMatch(_phone)) {
       final text = "$_countryCode $_phone";
 
-      PhoneAuthService(context: context).sendOtp(text).then((value) {
+      sendOtp(context, phone: text).then((value) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
@@ -58,10 +56,7 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Colors.black.withOpacity(0.5),
-                  Colors.black,
-                ],
+                colors: [Colors.black.withOpacity(0.5), Colors.black],
               ),
             ),
             child: Column(
@@ -72,9 +67,9 @@ class _PhoneNumberScreenState extends State<PhoneNumberScreen> {
                   "Welcome,",
                   style: CustomTextStyle.heading.style,
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Text(
-                  "Hello ${_hiveBox.get("name").toLowerCase()}, enter your phone number to sign in -",
+                  "Enter your phone number to get started -",
                   style: CustomTextStyle.subHeading.style,
                 ),
                 const SizedBox(height: 50),

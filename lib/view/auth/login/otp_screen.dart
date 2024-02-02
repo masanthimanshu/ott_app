@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:ott_app/firebase/auth/phone_auth_service.dart';
-import 'package:ott_app/firebase/database/add_data_service.dart';
 import 'package:ott_app/styles/pin_style.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -20,38 +18,13 @@ class OTPScreen extends StatefulWidget {
   State<OTPScreen> createState() => _OTPScreenState();
 }
 
-class _OTPScreenState extends State<OTPScreen> with AddDataService {
-  final _hiveBox = Hive.box("myBox");
-
+class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
   String _otp = "";
 
-  _addData({required String uid, required String phone}) {
-    final data = {
-      "id": uid,
-      "phone": phone,
-      "paymentType": "Paid",
-      "name": _hiveBox.get("name"),
-      "email": _hiveBox.get("email"),
-    };
-
-    createDocument(
-      data: data,
-      document: uid,
-      collection: "users",
-    );
-  }
-
-  _handleSubmit() async {
-    final res = await PhoneAuthService(context: context).verifyOtp(
-      otp: _otp,
-      verId: widget.verId,
-    );
-
-    _addData(uid: res.user!.uid, phone: res.user!.phoneNumber!);
-
-    if (!mounted) return;
-
-    Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+  _handleSubmit() {
+    verifyOtp(otp: _otp, verId: widget.verId).then((value) {
+      Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+    });
   }
 
   @override

@@ -3,13 +3,10 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class PhoneAuthService {
-  PhoneAuthService({required this.context});
-
-  final BuildContext context;
+mixin PhoneAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  Future<String?> sendOtp(String phone) async {
+  Future<String?> sendOtp(BuildContext context, {required String phone}) async {
     final Completer<String> completer = Completer<String>();
 
     try {

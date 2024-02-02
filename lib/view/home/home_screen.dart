@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ott_app/components/home/home_hero_scroller.dart';
 import 'package:ott_app/components/home/home_movie_list.dart';
-import 'package:ott_app/controller/get_content_controller.dart';
+import 'package:ott_app/controller/content/content_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: GetContentController().getData(),
+      future: ContentController().getData(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(

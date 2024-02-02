@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ott_app/components/player/video_player.dart';
 import 'package:ott_app/firebase/remote_config/config.dart';
-import 'package:ott_app/model/content_model.dart';
+import 'package:ott_app/model/content/content_model.dart';
 import 'package:ott_app/styles/text_styles.dart';
 
 class PlayerScreen extends StatefulWidget {

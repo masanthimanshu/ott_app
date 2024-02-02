@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 mixin GetDataService {
   final _db = FirebaseFirestore.instance;
 
-  Future<List<Map<String, dynamic>>?> getCollectionData(
+  Future<List<Map<String, dynamic>>> getCollectionData(
     String collection,
   ) async {
     final res = await _db.collection(collection).get();
@@ -13,7 +13,7 @@ mixin GetDataService {
       return allData;
     }
 
-    return null;
+    return [];
   }
 
   Future<Map<String, dynamic>?> getDocumentData({
@@ -22,6 +22,22 @@ mixin GetDataService {
   }) async {
     final res = await _db.collection(collection).doc(document).get();
     return res.data();
+  }
+
+  Future<List<Map<String, dynamic>>> getFilteredData({
+    required String collection,
+    required String field,
+    required String value,
+  }) async {
+    final query = _db.collection(collection).where(field, isEqualTo: value);
+    final res = await query.get();
+
+    if (res.docs.isNotEmpty) {
+      final allData = res.docs.map((e) => e.data()).toList();
+      return allData;
+    }
+
+    return [];
   }
 
   Stream<QuerySnapshot<Map<String, dynamic>>> getCollectionStream({

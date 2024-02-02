@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ott_app/model/content_model.dart';
+import 'package:ott_app/model/content/content_model.dart';
 import 'package:ott_app/view/player/player_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -46,15 +46,13 @@ class _HomeHeroScrollerState extends State<HomeHeroScroller> {
           ),
         ),
         const SizedBox(height: 10),
-        Center(
-          child: SmoothPageIndicator(
-            count: widget.data.length,
-            controller: _pageController,
-            effect: const ExpandingDotsEffect(
-              spacing: 4,
-              dotWidth: 8,
-              dotHeight: 8,
-            ),
+        SmoothPageIndicator(
+          count: widget.data.length,
+          controller: _pageController,
+          effect: const ExpandingDotsEffect(
+            spacing: 4,
+            dotWidth: 8,
+            dotHeight: 8,
           ),
         ),
       ],
