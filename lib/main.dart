@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ott_app/firebase/remote_config/config.dart';
 import 'package:ott_app/firebase_options.dart';
 import 'package:ott_app/utils/routes.dart';
 import 'package:ott_app/utils/theme.dart';
@@ -11,8 +10,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  initializeRemoteConfig();
 
   runApp(const MyApp());
 }

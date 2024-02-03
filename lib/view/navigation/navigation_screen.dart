@@ -1,5 +1,6 @@
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:ott_app/firebase/remote_config/remote_config.dart';
 import 'package:ott_app/view/explore/explore_screen.dart';
 import 'package:ott_app/view/favourite/favourite_screen.dart';
 import 'package:ott_app/view/home/home_screen.dart';
@@ -12,7 +13,7 @@ class NavigationScreen extends StatefulWidget {
   State<NavigationScreen> createState() => _NavigationScreenState();
 }
 
-class _NavigationScreenState extends State<NavigationScreen> {
+class _NavigationScreenState extends State<NavigationScreen> with RemoteConfig {
   int _selectedScreen = 0;
 
   final List<Widget> _pages = [
@@ -21,6 +22,12 @@ class _NavigationScreenState extends State<NavigationScreen> {
     const FavouriteScreen(),
     const ProfileScreen(),
   ];
+
+  @override
+  void initState() {
+    initializeRemoteConfig();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

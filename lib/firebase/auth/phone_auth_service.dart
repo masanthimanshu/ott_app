@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 mixin PhoneAuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final _auth = FirebaseAuth.instance;
 
   Future<String?> sendOtp(BuildContext context, {required String phone}) async {
     final Completer<String> completer = Completer<String>();
