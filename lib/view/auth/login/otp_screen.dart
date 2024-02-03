@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ott_app/controller/auth/auth_controller.dart';
 import 'package:ott_app/firebase/auth/phone_auth_service.dart';
 import 'package:ott_app/styles/pin_style.dart';
 import 'package:ott_app/styles/text_styles.dart';
@@ -21,10 +22,23 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
   String _otp = "";
 
-  _handleSubmit() {
-    verifyOtp(otp: _otp, verId: widget.verId).then((value) {
-      Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
-    });
+  _handleSubmit() async {
+    final data = await verifyOtp(otp: _otp, verId: widget.verId);
+    final isSignUp = await AuthController().isSignup();
+
+    if (!mounted) return;
+
+    if (data) {
+      if (isSignUp) {
+        Navigator.pushNamedAndRemoveUntil(context, "/signup", (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Error Verifying OTP")),
+      );
+    }
   }
 
   @override

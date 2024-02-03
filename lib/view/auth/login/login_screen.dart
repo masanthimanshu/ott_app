@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> with PhoneAuthService {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Welcome,",
+                  "Welcome User,",
                   style: CustomTextStyle.heading.style,
                 ),
                 const SizedBox(height: 5),

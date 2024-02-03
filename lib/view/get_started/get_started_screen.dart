@@ -45,7 +45,7 @@ class GetStartedScreen extends StatelessWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacementNamed(context, "/auth");
+                      Navigator.pushReplacementNamed(context, "/login");
                     },
                     child: const Text("Get Started"),
                   ),

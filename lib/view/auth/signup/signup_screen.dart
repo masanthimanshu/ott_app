@@ -1,20 +1,35 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ott_app/firebase/database/add_data_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignUpScreenState extends State<SignUpScreen> with AddDataService {
+  final user = FirebaseAuth.instance.currentUser!;
   final _formKey = GlobalKey<FormState>();
 
   String _name = "";
   String _email = "";
 
-  _handleSubmit() {}
+  _handleSubmit() {
+    final Map<String, dynamic> data = {
+      "name": _name,
+      "id": user.uid,
+      "email": _email,
+      "paymentType": "Free",
+      "phone": user.phoneNumber!,
+    };
+
+    addDocument(collection: "users", data: data).then((value) {
+      Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
