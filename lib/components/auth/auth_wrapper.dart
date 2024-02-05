@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 
 class AuthWrapper extends StatelessWidget {
-  const AuthWrapper({super.key, this.formKey, required this.items});
+  const AuthWrapper({
+    super.key,
+    this.formKey,
+    required this.items,
+    required this.nextBtn,
+  });
 
   final List<Widget> items;
+  final VoidCallback nextBtn;
   final GlobalKey<FormState>? formKey;
 
   @override
@@ -30,7 +36,18 @@ class AuthWrapper extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: items,
+                children: [
+                  ...items,
+                  const SizedBox(height: 50),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: nextBtn,
+                      child: const Text("Next"),
+                    ),
+                  ),
+                  const SizedBox(height: 25),
+                ],
               ),
             ),
           ),

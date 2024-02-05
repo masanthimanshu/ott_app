@@ -19,23 +19,26 @@ class _SignUpScreenState extends State<SignUpScreen> with AddDataService {
   String _email = "";
 
   _handleSubmit() {
-    final Map<String, dynamic> data = {
-      "name": _name,
-      "id": user.uid,
-      "email": _email,
-      "paymentType": "Free",
-      "phone": user.phoneNumber!,
-    };
+    if (_formKey.currentState!.validate()) {
+      final Map<String, dynamic> data = {
+        "name": _name,
+        "id": user.uid,
+        "email": _email,
+        "paymentType": "Free",
+        "phone": user.phoneNumber!,
+      };
 
-    addDocument(collection: "users", data: data).then((value) {
-      Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
-    });
+      addDocument(collection: "users", data: data).then((value) {
+        Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return AuthWrapper(
       formKey: _formKey,
+      nextBtn: _handleSubmit,
       items: [
         Text(
           "Hello there 👋",
@@ -78,19 +81,6 @@ class _SignUpScreenState extends State<SignUpScreen> with AddDataService {
             ),
           ),
         ),
-        const SizedBox(height: 50),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                _handleSubmit();
-              }
-            },
-            child: const Text("Next"),
-          ),
-        ),
-        const SizedBox(height: 25),
       ],
     );
   }

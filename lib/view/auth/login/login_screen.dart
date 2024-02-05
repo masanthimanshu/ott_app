@@ -44,6 +44,7 @@ class _LoginScreenState extends State<LoginScreen> with PhoneAuthService {
   @override
   Widget build(BuildContext context) {
     return AuthWrapper(
+      nextBtn: _handleSubmit,
       items: [
         Text(
           "Welcome User,",
@@ -86,15 +87,6 @@ class _LoginScreenState extends State<LoginScreen> with PhoneAuthService {
             ],
           ),
         ),
-        const SizedBox(height: 50),
-        SizedBox(
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: _handleSubmit,
-            child: const Text("Next"),
-          ),
-        ),
-        const SizedBox(height: 25),
       ],
     );
   }
