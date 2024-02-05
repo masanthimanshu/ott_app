@@ -25,7 +25,7 @@ class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
 
   _handleSubmit() async {
     final data = await verifyOtp(otp: _otp, verId: widget.verId);
-    final isSignUp = await AuthController().isSignup();
+    final isSignUp = await AuthController().isSignUp();
 
     if (!mounted) return;
 
