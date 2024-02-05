@@ -39,17 +39,9 @@ class _SignUpScreenState extends State<SignUpScreen> with AddDataService {
     return AuthWrapper(
       formKey: _formKey,
       nextBtn: _handleSubmit,
+      heading: "Hello there 👋",
+      subHeading: "Enter your name and email to get started",
       items: [
-        Text(
-          "Hello there 👋",
-          style: CustomTextStyle.heading.style,
-        ),
-        const SizedBox(height: 5),
-        Text(
-          "Enter your name and email to get started",
-          style: CustomTextStyle.subHeading.style,
-        ),
-        const SizedBox(height: 40),
         TextFormField(
           onChanged: (text) => _name = text,
           style: CustomTextStyle.bodyText.style,

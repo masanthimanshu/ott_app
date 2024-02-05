@@ -45,17 +45,9 @@ class _LoginScreenState extends State<LoginScreen> with PhoneAuthService {
   Widget build(BuildContext context) {
     return AuthWrapper(
       nextBtn: _handleSubmit,
+      heading: "Welcome User,",
+      subHeading: "Enter your phone number to get started -",
       items: [
-        Text(
-          "Welcome User,",
-          style: CustomTextStyle.heading.style,
-        ),
-        const SizedBox(height: 5),
-        Text(
-          "Enter your phone number to get started -",
-          style: CustomTextStyle.subHeading.style,
-        ),
-        const SizedBox(height: 50),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:ott_app/styles/text_styles.dart';
 
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({
     super.key,
     this.formKey,
     required this.items,
+    required this.heading,
     required this.nextBtn,
+    required this.subHeading,
   });
 
+  final String heading;
+  final String subHeading;
   final List<Widget> items;
   final VoidCallback nextBtn;
   final GlobalKey<FormState>? formKey;
@@ -37,6 +42,10 @@ class AuthWrapper extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(heading, style: CustomTextStyle.heading.style),
+                  const SizedBox(height: 5),
+                  Text(subHeading, style: CustomTextStyle.subHeading.style),
+                  const SizedBox(height: 50),
                   ...items,
                   const SizedBox(height: 50),
                   SizedBox(

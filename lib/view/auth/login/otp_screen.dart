@@ -46,17 +46,9 @@ class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
   Widget build(BuildContext context) {
     return AuthWrapper(
       nextBtn: _handleSubmit,
+      heading: "Verify Phone Number",
+      subHeading: "Enter OTP sent to ${widget.phone}",
       items: [
-        Text(
-          "Verify Phone Number",
-          style: CustomTextStyle.heading.style,
-        ),
-        const SizedBox(height: 5),
-        Text(
-          "Enter OTP sent to ${widget.phone}",
-          style: CustomTextStyle.subHeading.style,
-        ),
-        const SizedBox(height: 50),
         PinCodeTextField(
           length: 6,
           autoFocus: true,
