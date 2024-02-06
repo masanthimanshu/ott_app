@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ott_app/components/auth/auth_wrapper.dart';
 import 'package:ott_app/controller/auth/auth_controller.dart';
 import 'package:ott_app/firebase/auth/phone_auth_service.dart';
-import 'package:ott_app/styles/pin_style.dart';
+import 'package:ott_app/styles/package_styles.dart';
 import 'package:ott_app/styles/text_styles.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -52,8 +52,8 @@ class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
         PinCodeTextField(
           length: 6,
           autoFocus: true,
-          pinTheme: pinStyle,
           appContext: context,
+          pinTheme: otpFieldStyle,
           onChanged: (text) => _otp = text,
           keyboardType: TextInputType.number,
           textStyle: CustomTextStyle.bodyText.style,

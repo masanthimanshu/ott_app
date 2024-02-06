@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:ott_app/components/auth/auth_wrapper.dart';
 import 'package:ott_app/firebase/database/add_data_service.dart';
 import 'package:ott_app/styles/text_styles.dart';
+import 'package:ott_app/view/auth/signup/pricing_plans.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -29,7 +30,12 @@ class _SignUpScreenState extends State<SignUpScreen> with AddDataService {
       };
 
       addDocument(collection: "users", data: data).then((value) {
-        Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (_) => const PricingPlans(),
+          ),
+        );
       });
     }
   }
