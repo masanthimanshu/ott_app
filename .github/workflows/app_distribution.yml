@@ -8,7 +8,7 @@ jobs:
   build_apk:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
       - name: Setup Java
@@ -22,8 +22,17 @@ jobs:
         with:
           channel: "stable"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: flutter pub get
 
-      - name: Build android APK
+      - name: Build Android APK
         run: flutter build apk
+
+      - name: Upload APK to Firebase
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_APP_ID}}
+          serviceCredentialsFileContent: ${{ secrets.CREDENTIAL_FILE_CONTENT }}
+
+          groups: test-builds
+          file: build/app/outputs/flutter-apk/app-release.apk
