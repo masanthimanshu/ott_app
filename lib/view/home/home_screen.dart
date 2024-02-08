@@ -18,9 +18,8 @@ class HomeScreen extends StatelessWidget {
         }
 
         return ListView(
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           children: [
-            const SizedBox(height: 50),
             HomeHeroScroller(data: snapshot.data!),
             HomeMovieList(
               title: "Web Series",

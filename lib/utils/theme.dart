@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:ott_app/styles/text_styles.dart';
 
 final ThemeData appTheme = ThemeData(
   scaffoldBackgroundColor: Colors.black,
   textTheme: GoogleFonts.openSansTextTheme(),
-  appBarTheme: const AppBarTheme(
-    centerTitle: true,
+  appBarTheme: AppBarTheme(
     backgroundColor: Colors.black,
     foregroundColor: Colors.white,
-    actionsIconTheme: IconThemeData(color: Colors.white),
+    titleTextStyle: CustomTextStyle.mediumText.style,
+    actionsIconTheme: const IconThemeData(color: Colors.white),
   ),
   textButtonTheme: const TextButtonThemeData(
     style: ButtonStyle(

@@ -32,7 +32,15 @@ class _NavigationScreenState extends State<NavigationScreen> with RemoteConfig {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
+      appBar: AppBar(
+        title: const Text("Futtru OTT"),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.notifications_none),
+          ),
+        ],
+      ),
       body: _pages[_selectedScreen],
       bottomNavigationBar: DotNavigationBar(
         paddingR: EdgeInsets.zero,
