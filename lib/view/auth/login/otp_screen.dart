@@ -21,19 +21,21 @@ class OTPScreen extends StatefulWidget {
 }
 
 class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
+  final AuthController _authController = AuthController();
+
   String _otp = "";
 
   _handleSubmit() async {
     final data = await verifyOtp(otp: _otp, verId: widget.verId);
-    final isSignUp = await AuthController().isSignUp();
+    final userType = await _authController.checkUser();
 
     if (!mounted) return;
 
-    if (data) {
-      if (isSignUp) {
-        Navigator.pushNamedAndRemoveUntil(context, "/signup", (route) => false);
-      } else {
+    if (data.user != null) {
+      if (userType == "login") {
         Navigator.pushNamedAndRemoveUntil(context, "/home", (route) => false);
+      } else {
+        Navigator.pushNamedAndRemoveUntil(context, "/signup", (route) => false);
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -50,7 +50,7 @@ mixin PhoneAuthService {
     }
   }
 
-  Future<bool> verifyOtp({
+  Future<UserCredential> verifyOtp({
     required String otp,
     required String verId,
   }) async {
@@ -60,6 +60,6 @@ mixin PhoneAuthService {
     );
 
     final res = await _auth.signInWithCredential(credential);
-    return res.user != null;
+    return res;
   }
 }
