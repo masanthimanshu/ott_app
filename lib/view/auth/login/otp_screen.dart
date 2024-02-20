@@ -27,7 +27,7 @@ class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
 
   _handleSubmit() async {
     final data = await verifyOtp(otp: _otp, verId: widget.verId);
-    final userType = await _authController.checkUser();
+    final userType = await _authController.checkUser(data.user!.uid);
 
     if (!mounted) return;
 
@@ -64,7 +64,7 @@ class _OTPScreenState extends State<OTPScreen> with PhoneAuthService {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             TextButton(
-              onPressed: () {},
+              onPressed: () => sendOtp(context, phone: widget.phone),
               child: const Text("Resend OTP"),
             ),
           ],

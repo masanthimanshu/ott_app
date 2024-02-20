@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-enum CustomTextStyle { heading, bodyText, mediumText, subHeading }
+enum CustomTextStyle { heading, bodyText, mediumText, subHeading, lightText }
 
 extension CustomTextStyleExtension on CustomTextStyle {
   TextStyle get style {
@@ -12,19 +12,13 @@ extension CustomTextStyleExtension on CustomTextStyle {
           fontWeight: FontWeight.bold,
         );
       case CustomTextStyle.mediumText:
-        return const TextStyle(
-          fontSize: 23,
-          color: Colors.white,
-        );
+        return const TextStyle(fontSize: 23, color: Colors.white);
       case CustomTextStyle.subHeading:
-        return const TextStyle(
-          fontSize: 18,
-          color: Colors.white,
-        );
+        return const TextStyle(fontSize: 18, color: Colors.white);
+      case CustomTextStyle.lightText:
+        return const TextStyle(fontSize: 18, color: Colors.grey);
       case CustomTextStyle.bodyText:
-        return const TextStyle(
-          color: Colors.white,
-        );
+        return const TextStyle(color: Colors.white);
     }
   }
 }

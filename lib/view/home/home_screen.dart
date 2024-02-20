@@ -12,27 +12,16 @@ class HomeScreen extends StatelessWidget {
       future: ContentController().getData(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CircularProgressIndicator());
         }
 
         return ListView(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           children: [
             HomeHeroScroller(data: snapshot.data!),
-            HomeMovieList(
-              title: "Web Series",
-              data: snapshot.data!,
-            ),
-            HomeMovieList(
-              title: "Latest Movies",
-              data: snapshot.data!,
-            ),
-            HomeMovieList(
-              title: "Trending Shows",
-              data: snapshot.data!,
-            ),
+            HomeMovieList(title: "Web Series", data: snapshot.data!),
+            HomeMovieList(title: "Latest Movies", data: snapshot.data!),
+            HomeMovieList(title: "Trending Shows", data: snapshot.data!),
             const SizedBox(height: 50),
           ],
         );

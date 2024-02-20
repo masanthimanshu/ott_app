@@ -26,17 +26,12 @@ final ThemeData appTheme = ThemeData(
       padding: MaterialStatePropertyAll(EdgeInsets.all(18)),
       foregroundColor: MaterialStatePropertyAll(Colors.white),
       backgroundColor: MaterialStatePropertyAll(Colors.deepPurple),
+      textStyle: MaterialStatePropertyAll(
+        TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      ),
       shape: MaterialStatePropertyAll(
         RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
-      ),
-      textStyle: MaterialStatePropertyAll(
-        TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
+          borderRadius: BorderRadius.all(Radius.circular(10)),
         ),
       ),
     ),

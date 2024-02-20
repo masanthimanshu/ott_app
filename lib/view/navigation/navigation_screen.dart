@@ -4,6 +4,7 @@ import 'package:ott_app/firebase/remote_config/remote_config.dart';
 import 'package:ott_app/view/explore/explore_screen.dart';
 import 'package:ott_app/view/favourite/favourite_screen.dart';
 import 'package:ott_app/view/home/home_screen.dart';
+import 'package:ott_app/view/notification/notification_screen.dart';
 import 'package:ott_app/view/profile/profile_screen.dart';
 
 class NavigationScreen extends StatefulWidget {
@@ -36,7 +37,14 @@ class _NavigationScreenState extends State<NavigationScreen> with RemoteConfig {
         title: const Text("Futtru OTT"),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const NotificationScreen(),
+                ),
+              );
+            },
             icon: const Icon(Icons.notifications_none),
           ),
         ],
@@ -56,18 +64,10 @@ class _NavigationScreenState extends State<NavigationScreen> with RemoteConfig {
           });
         },
         items: [
-          DotNavigationBarItem(
-            icon: const Icon(Icons.home),
-          ),
-          DotNavigationBarItem(
-            icon: const Icon(Icons.explore),
-          ),
-          DotNavigationBarItem(
-            icon: const Icon(Icons.favorite),
-          ),
-          DotNavigationBarItem(
-            icon: const Icon(Icons.person),
-          ),
+          DotNavigationBarItem(icon: const Icon(Icons.home)),
+          DotNavigationBarItem(icon: const Icon(Icons.explore)),
+          DotNavigationBarItem(icon: const Icon(Icons.favorite)),
+          DotNavigationBarItem(icon: const Icon(Icons.person)),
         ],
       ),
     );

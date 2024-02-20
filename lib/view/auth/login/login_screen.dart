@@ -56,12 +56,10 @@ class _LoginScreenState extends State<LoginScreen> with PhoneAuthService {
           child: Row(
             children: [
               CountryCodePicker(
-                onChanged: (code) {
-                  _countryCode = code.dialCode!;
-                },
                 favorite: const ["IN"],
                 initialSelection: "IN",
                 textStyle: CustomTextStyle.bodyText.style,
+                onChanged: (code) => _countryCode = code.dialCode!,
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.5,

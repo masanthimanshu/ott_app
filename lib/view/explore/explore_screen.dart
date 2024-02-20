@@ -15,13 +15,8 @@ class ExploreScreen extends StatelessWidget {
           decoration: InputDecoration(
             hintText: "Search",
             hintStyle: CustomTextStyle.bodyText.style,
-            prefixIcon: const Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(15),
-            ),
+            prefixIcon: const Icon(Icons.search, color: Colors.white),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
           ),
         ),
         const SizedBox(height: 30),

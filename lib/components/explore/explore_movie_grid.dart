@@ -13,10 +13,7 @@ class ExploreMoviesGrid extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              title,
-              style: CustomTextStyle.subHeading.style,
-            ),
+            Text(title, style: CustomTextStyle.subHeading.style),
             IconButton(
               onPressed: () {},
               icon: const Icon(Icons.arrow_forward_ios),

@@ -11,10 +11,7 @@ class CustomRoot extends StatelessWidget {
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return const NavigationScreen();
-        }
-
+        if (snapshot.hasData) return const NavigationScreen();
         return const GetStartedScreen();
       },
     );

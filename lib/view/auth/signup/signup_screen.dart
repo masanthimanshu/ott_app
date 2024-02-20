@@ -54,15 +54,13 @@ class _SignUpScreenState extends State<SignUpScreen> with AddDataService {
           decoration: InputDecoration(
             hintText: "Name",
             hintStyle: CustomTextStyle.bodyText.style,
-            icon: const Icon(
-              Icons.person,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.person, color: Colors.white),
           ),
           validator: (value) {
-            if (value == null || value.isEmpty) {
+            if (value == null || value.trim().isEmpty) {
               return "Name field is empty";
             }
+
             return null;
           },
         ),
@@ -73,10 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> with AddDataService {
           decoration: InputDecoration(
             hintText: "Email (optional)",
             hintStyle: CustomTextStyle.bodyText.style,
-            icon: const Icon(
-              Icons.email_outlined,
-              color: Colors.white,
-            ),
+            icon: const Icon(Icons.email_outlined, color: Colors.white),
           ),
         ),
       ],

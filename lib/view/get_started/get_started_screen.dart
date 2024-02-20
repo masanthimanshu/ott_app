@@ -20,20 +20,14 @@ class GetStartedScreen extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
-                colors: [
-                  Colors.black.withOpacity(0.5),
-                  Colors.black,
-                ],
+                colors: [Colors.black.withOpacity(0.5), Colors.black],
               ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 const SizedBox(height: 50),
-                Text(
-                  "OTT Platform",
-                  style: CustomTextStyle.heading.style,
-                ),
+                Text("OTT Platform", style: CustomTextStyle.heading.style),
                 const SizedBox(height: 20),
                 Text(
                   "Watch unlimited movies, series & TV shows anywhere, anytime",

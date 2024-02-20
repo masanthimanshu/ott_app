@@ -38,15 +38,9 @@ class _PlayerScreenState extends State<PlayerScreen> with RemoteConfig {
         children: [
           VideoPlayer(url: _videoUrl),
           const SizedBox(height: 50),
-          Text(
-            widget.data.title,
-            style: CustomTextStyle.heading.style,
-          ),
+          Text(widget.data.title, style: CustomTextStyle.heading.style),
           const SizedBox(height: 25),
-          Text(
-            widget.data.desc,
-            style: CustomTextStyle.bodyText.style,
-          ),
+          Text(widget.data.desc, style: CustomTextStyle.bodyText.style),
         ],
       ),
     );
