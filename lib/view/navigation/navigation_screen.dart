@@ -33,6 +33,7 @@ class _NavigationScreenState extends State<NavigationScreen> with RemoteConfig {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       appBar: AppBar(
         title: const Text("Futtru OTT"),
         actions: [
@@ -53,11 +54,11 @@ class _NavigationScreenState extends State<NavigationScreen> with RemoteConfig {
       bottomNavigationBar: DotNavigationBar(
         paddingR: EdgeInsets.zero,
         backgroundColor: Colors.black,
-        unselectedItemColor: Colors.grey,
+        currentIndex: _selectedScreen,
+        unselectedItemColor: Colors.white,
         dotIndicatorColor: Colors.transparent,
         itemPadding: const EdgeInsets.all(15),
         marginR: const EdgeInsets.symmetric(horizontal: 25),
-        currentIndex: _selectedScreen,
         onTap: (e) {
           setState(() {
             _selectedScreen = e;
