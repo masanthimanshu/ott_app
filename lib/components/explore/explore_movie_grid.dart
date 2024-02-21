@@ -16,7 +16,7 @@ class ExploreMoviesGrid extends StatelessWidget {
             Text(title, style: CustomTextStyle.subHeading.style),
             IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.arrow_forward_ios),
+              icon: const Icon(Icons.arrow_forward_ios, size: 15),
             ),
           ],
         ),
@@ -26,7 +26,7 @@ class ExploreMoviesGrid extends StatelessWidget {
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+            crossAxisCount: 2,
             mainAxisSpacing: 10,
             crossAxisSpacing: 10,
           ),

@@ -73,6 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> with LogoutService {
           onPressed: () => logout(context, route: "/get-started"),
           child: const Text("Logout"),
         ),
+        const SizedBox(height: 50),
       ],
     );
   }

@@ -8,7 +8,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.all(25),
       children: [
         TextField(
           style: CustomTextStyle.bodyText.style,
@@ -19,9 +19,8 @@ class ExploreScreen extends StatelessWidget {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)),
           ),
         ),
-        const SizedBox(height: 30),
-        const ExploreMoviesGrid(title: "Bollywood"),
-        const ExploreMoviesGrid(title: "Hollywood"),
+        const SizedBox(height: 50),
+        const ExploreMoviesGrid(title: "Movies"),
         const ExploreMoviesGrid(title: "Web Series"),
       ],
     );
